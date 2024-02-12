@@ -1,11 +1,18 @@
+
+
 import { useState } from "react";
 import NavListDrawer from "./NavListDrawer"
-import { AppBar, Box, Button, Drawer, IconButton, Link, Toolbar } from "@mui/material";
+import { NavLink } from "react-router-dom";
+import { AppBar, Box, Button, Drawer, Link, IconButton, Toolbar } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import BakeryDiningIcon from '@mui/icons-material/BakeryDining';
 import CoffeeIcon from '@mui/icons-material/Coffee';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+
+
+
+
 
 
 
@@ -15,13 +22,13 @@ const NavBar = () => {
 const navLinks= [
 
   {
-      title: "Inicio", path: "#Inicio", icon:<HomeIcon/>
+      title: "Inicio", path: "", icon:<HomeIcon/>
   },
   {
-    title: "Cafeteria", path: "#Cafeteria", icon: <CoffeeIcon/>
+    title: "Cafeteria", path: "cafeteria", icon: <CoffeeIcon/>
 },
 {
-  title: "Pasteleria", path: "#Pasteleria", icon: <BakeryDiningIcon/>
+  title: "Pasteleria", path: "pasteleria", icon: <BakeryDiningIcon/>
 },
 
 ]
@@ -39,34 +46,33 @@ const navLinks= [
             >
                 <MenuIcon />
             </IconButton>
-            <Link 
-                href="#inicio"  
+           <Link 
+                href="/"  
                 variant="h5" 
-                sx={{flexGrow: 1, textDecoration: "none", paddingX: 4}}
+                sx={{flexGrow: 1, textDecoration: "none", paddingX: 4, ":hover": {color:'info.main'}}}
                 color="inherit">
                 
                       Afrika
                  
-            </Link>
+             </Link>
+            
 
             <Box sx={{display: {sm: "none",xs:"none", md:"block"},paddingX: 4}} >
               
-                {
+                {   
+                    
+                   
+
                   navLinks.map(item => (
-                    <Button
-                    sx={{
-                      paddingX: 3,
-                      transition: "0.2s",
-                      "&:hover":{
-                        transform: "scale(1.05)",
-                        backgroundColor: "rgb(100, 67, 42)"
-                      },
-            
-                    }}
-                     color="inherit"key={item.title}
-                     href={item.path} 
-                    >
-                        {item.title}</Button>
+                 
+                   <NavLink  to={`/categoria/${item.path}`}
+                        className='navLink'
+                       key={item.title} >
+                        {item.title}
+
+                   </NavLink>
+                  
+                   
 
                   ))
                 }
