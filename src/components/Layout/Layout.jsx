@@ -70,10 +70,10 @@ const Layout = ({children}) => {
   return (
     <>
         <ThemeProvider theme = {theme}>
-     
         <NavBar/>
-        <Box sx={{marginTop:10, marginX:"auto"}}>  
-              <Typography margin={5} color="text.disabled"> Dark Mode
+
+        <Box sx={{marginTop:2, marginX:"auto"}}>  
+              <Typography margin={10} color="text.disabled"> Dark Mode
                   <Switch  onChange={() => setIsDark(!isDark)} color="error"/>
               </Typography>  
 

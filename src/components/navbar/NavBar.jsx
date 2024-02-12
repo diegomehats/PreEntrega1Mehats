@@ -1,5 +1,4 @@
 
-
 import { useState } from "react";
 import NavListDrawer from "./NavListDrawer"
 import { NavLink } from "react-router-dom";
@@ -22,13 +21,13 @@ const NavBar = () => {
 const navLinks= [
 
   {
-      title: "Inicio", path: "", icon:<HomeIcon/>
+      title: "Inicio", path: "/", icon:<HomeIcon/>
   },
   {
-    title: "Cafeteria", path: "cafeteria", icon: <CoffeeIcon/>
+    title: "Cafeteria", path: "categoria/cafeteria", icon: <CoffeeIcon/>
 },
 {
-  title: "Pasteleria", path: "pasteleria", icon: <BakeryDiningIcon/>
+  title: "Pasteleria", path: "categoria/pasteleria", icon: <BakeryDiningIcon/>
 },
 
 ]
@@ -65,7 +64,7 @@ const navLinks= [
 
                   navLinks.map(item => (
                  
-                   <NavLink  to={`/categoria/${item.path}`}
+                   <NavLink  to={item.path}
                         className='navLink'
                        key={item.title} >
                         {item.title}

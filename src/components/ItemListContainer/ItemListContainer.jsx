@@ -101,36 +101,20 @@ useEffect(() =>{
   return (
     <>
   
-   
-     <Box  sx={{mt:3}}>
-                <Box position="relative">
-                    <img src='./src/assets/restaurante.jpg' alt="restaurante"  width="100%" height="200px" style={{objectFit:"cover"}}/>
-                    <Typography color="white" fontWeight="bold" top="120px" left="30px"   fontSize="xxx-large" position="absolute"  sx={{textShadow:"1px 1px 2px black", textTransform: "uppercase"}}>Afrika {categoriaId}</Typography>
-                </Box>
-                <TextField 
-                      id="filled-basic"
-                      label="Buscador"
-                      fullWidth 
-                      variant="filled"
-                      InputProps={{
-                        startAdornment: (
-                        <InputAdornment position="start">
-                            <SearchIcon  />
-                        </InputAdornment>
-                      ),
-                    }}
-                 />
-                  </Box> 
-                
-                
+              <Box flex alignContent="center" justifyContent="center">
+                <Typography align='center' color="text.disabled" textTransform="uppercase" fontWeight="bold" fontSize="30px"  >{categoriaId} </Typography> 
+              </Box>
                  <Grid container spacing={4}  >
+                  
                     {  
+                      
                         productos.map(producto => ( 
                         <Grid item md={4} mt={4}key={producto.title}>      
                             <Product
                             producto = {producto}
                             />
                         </Grid>
+
 
                         ))}
                           
