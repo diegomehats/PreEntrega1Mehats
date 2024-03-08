@@ -7,13 +7,6 @@ import Layout from "./components/Layout/Layout";
 
 
 
-
-
-
-
-
-
-
 function App({children}) {
 
   
@@ -23,14 +16,10 @@ function App({children}) {
       <Layout>
         <Container sx={{marginBottom:10}}>
             <CssBaseline/>
-           
-           
-            
             <Routes>
               <Route path="/" element= {<ItemListContainer/> } />
               <Route path="/categoria/:categoriaId" element= {<ItemListContainer/>}/>
-              <Route path="/item/:itemId" element={<ItemListContainer/>}/>
-               
+              <Route path="/item/:itemId" element={<ItemListContainer/>}/>       
             </Routes>
             
           </Container>

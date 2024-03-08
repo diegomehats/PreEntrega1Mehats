@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import NavListDrawer from "./NavListDrawer"
 import { NavLink } from "react-router-dom";
@@ -8,16 +7,13 @@ import HomeIcon from '@mui/icons-material/Home';
 import BakeryDiningIcon from '@mui/icons-material/BakeryDining';
 import CoffeeIcon from '@mui/icons-material/Coffee';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-
-
-
+import Logo from '../../assets/Logo.png'
 
 
 
 
 const NavBar = () => {
     const [open, setOpen] = useState(false)
-
 const navLinks= [
 
   {
@@ -36,7 +32,7 @@ const navLinks= [
   return (
     <>
     <AppBar>
-        <Toolbar >
+        <Toolbar sx={{height: 10}}>
             <IconButton 
                 color="inherit"
                 size = "large"
@@ -46,21 +42,17 @@ const navLinks= [
                 <MenuIcon />
             </IconButton>
            <Link 
-                href="/"  
-                variant="h5" 
-                sx={{flexGrow: 1, textDecoration: "none", paddingX: 4, ":hover": {color:'info.main'}}}
-                color="inherit">
-                
-                      Afrika
-                 
+                href="/"   
+                sx={{flexGrow: 1, transition:"0.5s", ":hover":{transform: "scale(1.02)"} }}>
+               
+                       <img src={Logo} width={120} height={120}/> 
+   
              </Link>
             
 
-            <Box sx={{display: {sm: "none",xs:"none", md:"block"},paddingX: 4}} >
+            <Box sx={{display: {sm: "none",xs:"none", md:"block"}}} >
               
                 {   
-                    
-                   
 
                   navLinks.map(item => (
                  
@@ -70,16 +62,12 @@ const navLinks= [
                         {item.title}
 
                    </NavLink>
-                  
-                   
 
                   ))
                 }
                 <Button href="#carrito" key="#carrito" color="inherit" >
                     <ShoppingCartIcon/>
                 </Button>
-
-
             </Box>
 
         </Toolbar>

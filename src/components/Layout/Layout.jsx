@@ -1,7 +1,8 @@
 import NavBar from "../navbar/NavBar"
 import { useState } from "react";
-import {createTheme, Box, Typography, ThemeProvider } from "@mui/material"
+import {createTheme, Box, Typography, ThemeProvider, Grid } from "@mui/material"
 import Switch from '@mui/material/Switch'
+import banner from '../../assets/banner.png'
 
 
 
@@ -69,14 +70,17 @@ const Layout = ({children}) => {
 
   return (
     <>
-        <ThemeProvider theme = {theme}>
-        <NavBar/>
-
+        <ThemeProvider theme = {theme}>   
+        <NavBar />
         <Box sx={{marginTop:2, marginX:"auto"}}>  
-              <Typography margin={10} color="text.disabled"> Dark Mode
+              <Typography  margin={10} color="text.disabled"> Dark Mode
                   <Switch  onChange={() => setIsDark(!isDark)} color="error"/>
               </Typography>  
-
+              <Grid marginTop={15} container justifyContent='center'>
+                  <Grid  item>
+                     <img className="img"  src={banner} alt="imagen banner" />
+                  </Grid>
+             </Grid>
              
               {children}
           </Box>

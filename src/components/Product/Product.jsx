@@ -1,7 +1,9 @@
 import {Card, CardMedia, CardContent, Typography, CardActions, Button,CardActionArea, Box, Container, Grid} from "@mui/material"
-
 import Modal from '@mui/material/Modal';
 import { useState } from 'react';
+
+
+
 
 const style = {
   position: 'absolute',
@@ -9,14 +11,11 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
-  bgcolor: 'background.paper',
+  bgcolor: 'background.default',
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
-
-
-
 
 
 const Product = ({producto}) => {
@@ -37,51 +36,65 @@ const Product = ({producto}) => {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        
       > 
-        
-        <Box sx={style} >
-        <CardMedia  component="img"  image={producto.image} sx={{flexGrow:1,  margin:2,objectFit:{xs:"contain", md:"cover"}, maxWidth:{xs:"70px", md:"90%"}, height:{xs:"100px", md:"400px"} }} alt="imagen producto" />
-          <Typography textTransform="uppercase" id="modal-modal-title" variant="h6" component="h2">
-           {producto.title}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {producto.description}
-          </Typography>
-          <Grid marginTop={2} container spacing={2}alignItems="center"  >
-              <Grid item>
-                    <button 
-                        type="button"
-                        onClick={() => {
-                            if(cantidad<= 1) return;
-                            setCantidad(cantidad - 1)
-                        }}
-                        
-                    >
-                        -
-                    </button>
+       
+        <Box sx={style}>
+          <Grid marginTop={2} container  justifyContent="center" alignItems="center"  >
+            <CardMedia  component="img"   image={`../../../public/${producto.image}.jpg`}  sx={{flexGrow:1,  margin:2,objectFit:{xs:"contain", md:"cover"}, height:{xs:"100px", md:"400px"} }} alt="imagen producto" />
+                  <Typography color='text.disabled' textTransform="uppercase" id="modal-modal-title" variant="h6" component="h2">
+                  {producto.title}
+                  </Typography>
+                  <Typography color='text.disabled' id="modal-modal-description" sx={{ mt: 2 }}>
+                    {producto.description}
+                  </Typography>
+                  <Grid item marginTop={1}>
+                          <Typography color='black' fontWeight='bold' fontSize='30px'>
+                            $ {producto.price * cantidad}
+                          </Typography>
                     </Grid>
-                    <Grid item>
-                        <p >
-                             {cantidad}
-                        </p>
+              <Grid container spacing={2} justifyContent='center'>
+                  <Grid item >
+                        <button 
+                            type="button"
+                            
+                            onClick={() => {
+                                if(cantidad<= 1) return;
+                                setCantidad(cantidad - 1)
+                            }}
+                            
+                        >
+                            -
+                        </button>
                         </Grid>
-                    <Grid item>
-                    <button
-                        type="button"
-                        onClick={() => {
-                            if(cantidad>= 10) return;
-                            setCantidad(cantidad + 1)
-                        }}
-                       
-                    >
-                      +
+                        <Grid item>
+                            <Typography color='text.disabled'>
+                                {cantidad}
+                            </Typography>
+                            </Grid>
+                        <Grid item>
+                        <button
+                            type="button"
+                           
+                            onClick={() => {
+                                if(cantidad>= producto.stock) return;
+                                setCantidad(cantidad + 1)
+                            }}
+                          
+                        >
+                          +
 
-                    </button>
+                        </button>
+                        </Grid>
+                        
                     </Grid>
-            </Grid>
-        </Box>
+                    <Grid item marginTop={1}>
+                          <Typography>
+                            stock:  {producto.stock}
+                          </Typography>
+                    </Grid>
+          </Grid>
         
+        </Box>
       </Modal>
     
         <Card
@@ -93,11 +106,9 @@ const Product = ({producto}) => {
             }}
         
         >
-
-          
           <CardActionArea  sx={{display: {xs:"flex",md:"grid"},height:{xs:"100px", md:"auto"} , alignItems:"center",padding:2, justifyItems:"center"}}>
               
-                  <CardMedia  component="img" image={producto.image} sx={{ flexGrow:1,  margin:2,objectFit:{xs:"contain", md:"cover"}, borderRadius:{xs:"20%", md:"10%"}, maxWidth:{xs:"70px", md:"90%"}, height:{xs:"100px", md:"300px"} }} alt="imagen producto" />
+                  <CardMedia  component="img" image={`../../../public/${producto.image}.jpg`} sx={{ flexGrow:1,  margin:2,objectFit:{xs:"contain", md:"cover"}, borderRadius:{xs:"20%", md:"10%"}, maxWidth:{xs:"70px", md:"90%"}, height:{xs:"100px", md:"300px"} }} alt="imagen producto" />
               
                 
               
@@ -106,6 +117,7 @@ const Product = ({producto}) => {
                             <Typography component="p"  color="text.disabled" sx={{fontSize:{xs:"xx-small", sm:"xsmal", md:"small"}}}>
                                 {producto.description}
                             </Typography>
+                            <Typography marginTop={1} align="center" color='text.disabled'fontWeight="bold" textTransform="uppercase" sx={{fontSize:{xs:"large", md:"x-large"}}} >${producto.price}</Typography> 
                   </CardContent>
 
                   <CardActions>
