@@ -1,42 +1,46 @@
-import { useParams } from 'react-router-dom';
-import { createContext, useState, useEffect } from "react"
-import {getFirestore, collection, getDocs, query, where} from 'firebase/firestore'
+import { createContext, useState } from "react";
+import { toast } from "react-toastify";
 
 const CafeContext = createContext();
 
-const CafeProvider = ({children}) => {
- 
-  //const { categoriaId } = useParams()
-  const categoriaId = 'cafeteria'
- const [productos, setProductos]= useState([]);
-  useEffect(() =>{
-    const db = getFirestore();
-    const productoRef = query(collection(db, "productos"), where("categoryId", "==", categoriaId));
-    getDocs(productoRef).then((collection) => {
-     const products =collection.docs.map((doc) => {
-      return doc.data();
-     })
-     setProductos(products)
-    })
+const CafeProvider = ({ children }) => {
+  const [pedido, setPedido] = useState([]);
+
+  const handleAgregarPedido = (producto) => {
+    if (pedido.some((productoState) => productoState.title === producto.title)) {
+      const pedidoActualizado = pedido.map((productoState) =>
+        productoState.title === producto.title ? producto : productoState
+      );
+      setPedido(pedidoActualizado);
+      console.log("Pedido actualizado correctamente");
+    } else {
+      setPedido([...pedido, producto]);
+      console.log("Pedido agregado correctamente");
+      toast.success("pedido realizado");
+    }
+  };
+
+  const eliminarProducto = (productoEliminar) => {
+    const pedidoFiltrado = pedido.filter(
+      (producto) => producto.title !== productoEliminar.title
+    );
+    setPedido(pedidoFiltrado);
+    toast.error('se elimino el producto')
     
-  },[categoriaId]);
-  
+  };
 
   return (
     <CafeContext.Provider
-        value={{
-          categoriaId,
-            productos,
-            
-           
-            
-
-        }}
-    > 
-        {children}
+      value={{
+        handleAgregarPedido,
+        eliminarProducto,
+        pedido,
+      }}
+    >
+      {children}
     </CafeContext.Provider>
-  )
-}
+  );
+};
 
-export {CafeProvider}
-export default CafeContext
+export { CafeProvider, CafeContext };
+export default CafeContext;

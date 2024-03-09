@@ -1,11 +1,8 @@
-import { useContext } from "react"
-import CafeContext from "../context/CafeProvider"
-
+import { useContext } from "react";
+import CafeContext from "../context/CafeProvider";
 
 const useCafe = () => {
-  return (
-    useContext(CafeContext)
-  )
-}
+  return useContext(CafeContext);
+};
 
 export default useCafe;
